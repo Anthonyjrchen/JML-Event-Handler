@@ -4,14 +4,69 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css"/>
+        <style type="text/css">
+            body {
+              background-color: #ffffff;
+              /* could add font here too */
+            }
+            .ui.menu {
+                border-radius: 0px !important;
+            }
+          </style>
     </head>
-    <body>
-        <h1>
-            JML Event Handler
-        </h1>
-        <div>
-            {% block content %}
-            {% endblock %}
+    <body style="display: flex; min-height: 100vh; flex-direction: row;">
+        <div class="ui left inverted pointing labeled icon vertical menu" style="background-color: #e96989; width:100px; height:100%;">
+            <div class="item"><i class="large icon"></i></div>
+            <a class="ui active item" id="home">
+                <i class="big home icon"></i>
+                Home
+            </a>
+            <a class="ui item" id="remove">
+                <i class="big trash alternate icon"></i>
+                Delete
+            </a>
+            <a class="ui item" id="calendars">
+                <i class="big calendar alternate icon"></i>
+                Calendars
+            </a>
+            <a class="ui item" id="calculator">
+                <i class="big calculator icon"></i>
+                Calculator
+            </a>
+        </div>
+        <div style="padding:10px; width:100%">
+            <div class="ui top footer">
+                <h1>
+                    JML Event Handler
+                </h1>
+                <div class="ui divider">
+
+                </div>
+            </div>
+            <div>
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </body>
+    <script>
+        if ('{{page_location}}'=="home") {
+            $('#home').addClass('active').siblings().removeClass('active');
+        } else if('{{page_location}}'=="remove"){
+            $('#remove').addClass('active').siblings().removeClass('active');
+        } else if('{{page_location}}'=="calendars"){
+            $('#calendars').addClass('active').siblings().removeClass('active');
+        } else if('{{page_location}}'=="calculator"){
+            $('#calculator').addClass('active').siblings().removeClass('active');
+        }
+
+        $('.ui.item').on('click', function() {
+            button_id = $(this).attr("id")
+            if (button_id=="home") {
+                window.location.href="/"
+            } else {
+                window.location.href="/" + button_id
+            }
+        })
+    </script>
 </html>
