@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
         <style type="text/css">
             body {
               background-color: #ffffff;
               /* could add font here too */
             }
             .ui.menu {
-                border-radius: 0px !important;
+                border-radius: 0px;
             }
           </style>
+          <!-- #e78ca3 -->
     </head>
     <body style="display: flex; min-height: 100vh; flex-direction: row;">
-        <div class="ui left inverted pointing labeled icon vertical menu" style="background-color: #e96989; width:100px; height:100%;">
-            <div class="item"><i class="large icon"></i></div>
+        <div class="ui left inverted pointing large vertical menu" style="background-color: #e96989; width:350px;height:100%;">
+            <div class="item"><h2>JML Event Handler</h2></div>
+            <div class="borderless item">
+                <div class="ui horizontal card" style=" background-color: #e78ca3;">
+                    <div class="image" style="background-color: #e78ca3; width:90px; height:95px;">
+                    <img src=".\static\female_avatar.png">
+                    </div>
+                    <div class="ui right aligned content">
+                        <div class="header" style="color:#ffffff;">Jana Neria</div>
+                        <div class= "meta" style="color:#e6e2e2;">
+                            <p>Paralegal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui divider" style="border:0.5px solid #ffffff"></div>
             <a class="ui active item" id="home">
-                <i class="big home icon"></i>
+                <i class="home icon"></i>
                 Home
             </a>
             <a class="ui item" id="remove">
-                <i class="big trash alternate icon"></i>
+                <i class="trash alternate icon"></i>
                 Delete
             </a>
             <a class="ui item" id="calendars">
-                <i class="big calendar alternate icon"></i>
+                <i class="calendar alternate icon"></i>
                 Calendars
             </a>
             <a class="ui item" id="calculator">
-                <i class="big calculator icon"></i>
+                <i class="calculator icon"></i>
                 Calculator
             </a>
         </div>
-        <div style="padding:10px; width:100%">
+        <div style="width:100%">
             <div class="ui top footer">
-                <h1>
+                <h1 style="padding-top:10px; padding-left:10px;">
                     JML Event Handler
                 </h1>
-                <div class="ui divider">
+                <div class="ui divider" style="border:0.5px solid #8a8888">
 
                 </div>
             </div>
-            <div>
+            <div style="padding:10px">
                 {% block content %}
                 {% endblock %}
             </div>
@@ -62,11 +77,7 @@
 
         $('.ui.item').on('click', function() {
             button_id = $(this).attr("id")
-            if (button_id=="home") {
-                window.location.href="/"
-            } else {
-                window.location.href="/" + button_id
-            }
+            window.location.href="/" + button_id
         })
     </script>
 </html>
