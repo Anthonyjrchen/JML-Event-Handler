@@ -6,11 +6,15 @@
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
         <style>
             html,body {
-              margin: 0;
+                margin: 0;
               /* could add font here too */
+            }
+            .meta{
+                font-family: Times, Times New Roman, serif;
             }
             .ui.menu {
                 border-radius: 0px;
+                font-family: American Typewriter, serif;
             }
             .ui.segment{
                 margin:0;
@@ -28,16 +32,18 @@
                             <img src=".\static\female_avatar.png">
                             </div>
                             <div class="ui right aligned content">
-                                <div class="header" style="color:#ffffff;">Jana Neria</div>
-                                <div class= "meta" style="color:#e6e2e2;">
-                                    <p>Paralegal</p>
-                                </div>
+                                <h5 class="ui header" style="color:#ffffff;">
+                                    Jana Neria
+                                    <div class= "sub header" style="color:#e6e2e2;">
+                                        <p>Paralegal</p>
+                                    </div>
+                                </h5>
                             </div>
                         </div>
                     </div>
                     <a class="borderless item">
                         <i class="user alternate icon"></i>
-                        Profile
+                        My Profile
                     </a>
                     <a class="borderless item">
                         <i class="history icon"></i>
@@ -45,7 +51,7 @@
                     </a>
                     <div class="ui divider" style="border:0.5px solid #ffffff"></div>
                     <div class="meta" style="padding-left:10px;color:#e6e2e2;">
-                        Menu
+                        MENU
                     </div>
                     <a class="borderless active item" id="home">
                         <i class="home icon"></i>
@@ -65,14 +71,14 @@
                     </a>
         
                     <div class="meta" style="padding-top:50px;padding-left:10px;color:#e6e2e2;">
-                        Assistance
+                        ASSISTANCE
                     </div>
                     <a class="borderless item" id="settings">
-                        <i class="calculator icon"></i>
+                        <i class="settings icon"></i>
                         Settings
                     </a>
                     <a class="borderless item" id="support">
-                        <i class="calculator icon"></i>
+                        <i class="question circle icon"></i>
                         Support & Help
                     </a>
                     <div style="padding-top:240px">

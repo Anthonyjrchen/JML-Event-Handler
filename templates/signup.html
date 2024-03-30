@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+        <style>
+            html,body {
+                background-color: #ebedf0;
+                margin: 0;
+              /* could add font here too */
+            }
+          </style>
+    </head>
+    <body>
+        <div class="container" style="display:flex;flex-direction: column;overflow: auto; justify-content: center;align-items: center;">
+            <h1 class="ui massive pink centered header" style="padding-top:70px;">
+                JML Event Handler
+            </h1>
+            <div class="ui container" style="display:flex;flex-direction: row;overflow: auto; justify-content: center;align-items:baseline;">
+                <h2 class="ui small header" style="padding-right:10px">
+                    <img class="ui image" src="./static/pythonlogo.png">
+                    <div class="content">
+                        Python
+                    </div>
+                </h2>
+                <h2 class="ui small header" style="padding-right:10px">
+                    <img class="ui image" src="./static/htmlicon.png">
+                    <div class="content">
+                        Html5
+                    </div>
+                </h2>
+                <h2 class="ui small header">
+                    <img class="ui image" src="./static/fastapilogo.png">
+                    <div class="content">
+                        FastAPI
+                    </div>
+                </h2>
+            </div>
+            <div class="ui segment" style="min-width:500px;max-width:650px;overflow: visible; padding:0">
+                <div class="ui centered header" style="padding-top:10px">
+                    Create an ProjectDA account
+                </div>
+                <div class="ui footer segment" style="margin:0;border-radius: 0;background-color:#f0ecf4;box-shadow: None;border:0;">
+
+                </div>
+            </div>
+        </div>
+        <div style="padding:10px">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
