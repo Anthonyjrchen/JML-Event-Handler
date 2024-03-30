@@ -4,63 +4,99 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
-        <style type="text/css">
-            body {
-              background-color: #ffffff;
+        <style>
+            html,body {
+              margin: 0;
               /* could add font here too */
             }
             .ui.menu {
                 border-radius: 0px;
             }
+            .ui.segment{
+                margin:0;
+            }
           </style>
-          <!-- #e78ca3 -->
     </head>
-    <body style="display: flex; min-height: 100vh; flex-direction: row;">
-        <div class="ui left inverted pointing large vertical menu" style="background-color: #e96989; width:350px;height:100%;">
-            <div class="item"><h2>JML Event Handler</h2></div>
-            <div class="borderless item">
-                <div class="ui horizontal card" style=" background-color: #e78ca3;">
-                    <div class="image" style="background-color: #e78ca3; width:90px; height:95px;">
-                    <img src=".\static\female_avatar.png">
-                    </div>
-                    <div class="ui right aligned content">
-                        <div class="header" style="color:#ffffff;">Jana Neria</div>
-                        <div class= "meta" style="color:#e6e2e2;">
-                            <p>Paralegal</p>
+    <body>
+        <div class="container" style="background-color: #ffffff;padding: 0; min-height:100vh;display: flex;flex-direction: row;overflow-y: auto;">
+            <div class="ui segment" style="padding:0px;border-bottom:None;border-left: None;border-top: None;">
+                <div class="ui left fluid inverted pointing large vertical menu" style="background-color: #e96989;height:100%;width:270px;overflow-x:hidden;overflow-y: visible;">
+                    <div class="item"><h2>ProjectDA</h2></div>
+                    <div class="item">
+                        <div class="ui fluid horizontal card" style=" background-color: #e78ca3; min-width: 200px;">
+                            <div class="image" style="background-color: #e78ca3; width:70px; height:75px;">
+                            <img src=".\static\female_avatar.png">
+                            </div>
+                            <div class="ui right aligned content">
+                                <div class="header" style="color:#ffffff;">Jana Neria</div>
+                                <div class= "meta" style="color:#e6e2e2;">
+                                    <p>Paralegal</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <a class="borderless item">
+                        <i class="user alternate icon"></i>
+                        Profile
+                    </a>
+                    <a class="borderless item">
+                        <i class="history icon"></i>
+                        History
+                    </a>
+                    <div class="ui divider" style="border:0.5px solid #ffffff"></div>
+                    <div class="meta" style="padding-left:10px;color:#e6e2e2;">
+                        Menu
+                    </div>
+                    <a class="borderless active item" id="home">
+                        <i class="home icon"></i>
+                        Home
+                    </a>
+                    <a class="borderless item" id="remove">
+                        <i class="trash alternate icon"></i>
+                        Delete
+                    </a>
+                    <a class="borderless item" id="calendars">
+                        <i class="calendar alternate icon"></i>
+                        Calendars
+                    </a>
+                    <a class="borderless item" id="calculator">
+                        <i class="calculator icon"></i>
+                        Calculator
+                    </a>
+        
+                    <div class="meta" style="padding-top:50px;padding-left:10px;color:#e6e2e2;">
+                        Assistance
+                    </div>
+                    <a class="borderless item" id="settings">
+                        <i class="calculator icon"></i>
+                        Settings
+                    </a>
+                    <a class="borderless item" id="support">
+                        <i class="calculator icon"></i>
+                        Support & Help
+                    </a>
+                    <div style="padding-top:240px">
+    
+                    </div>
+                    <a class="borderless item" id="sign_out">
+                        <i class="sign out alternate icon"></i>
+                        Sign Out
+                    </a>
                 </div>
             </div>
-            <div class="ui divider" style="border:0.5px solid #ffffff"></div>
-            <a class="ui active item" id="home">
-                <i class="home icon"></i>
-                Home
-            </a>
-            <a class="ui item" id="remove">
-                <i class="trash alternate icon"></i>
-                Delete
-            </a>
-            <a class="ui item" id="calendars">
-                <i class="calendar alternate icon"></i>
-                Calendars
-            </a>
-            <a class="ui item" id="calculator">
-                <i class="calculator icon"></i>
-                Calculator
-            </a>
-        </div>
-        <div style="width:100%">
-            <div class="ui top footer">
-                <h1 style="padding-top:10px; padding-left:10px;">
-                    JML Event Handler
-                </h1>
-                <div class="ui divider" style="border:0.5px solid #8a8888">
-
+            <div style="width:100%">
+                <div class="ui top footer">
+                    <h1 style="padding-top:10px; padding-left:10px;">
+                        JML Event Handler
+                    </h1>
+                    <div class="ui divider" style="border:0.5px solid #8a8888">
+    
+                    </div>
                 </div>
-            </div>
-            <div style="padding:10px">
-                {% block content %}
-                {% endblock %}
+                <div style="padding:10px">
+                    {% block content %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </body>
@@ -75,7 +111,7 @@
             $('#calculator').addClass('active').siblings().removeClass('active');
         }
 
-        $('.ui.item').on('click', function() {
+        $('.borderless.item').on('click', function() {
             button_id = $(this).attr("id")
             window.location.href="/" + button_id
         })
