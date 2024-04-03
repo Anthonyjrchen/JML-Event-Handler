@@ -11,8 +11,13 @@ import models
 from models import User
 import cryptography
 import random
+
+
+'''
+FASTAPI SETUP
+'''
 app = FastAPI()
-app.mount("/static", StaticFiles(directory=r"C:\Users\antho\Desktop\JML Event Handler\static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 '''
@@ -78,6 +83,14 @@ def authenticate_user(username: str, password: str, db):
         return False
     return user
 
+'''
+SUPPORT TICKET ROUTE
+'''
+@app.post("/ticket/submit")
+def support(request: Request):
+    
+    return request.headers["subject"] + " : " + request.headers["body"]
+
 
 '''
 GENERAL ROUTES
@@ -95,13 +108,6 @@ def home(request: Request):
         "page_location":"home"
     })
 
-@app.get("/remove")
-def remove(request: Request):
-    return templates.TemplateResponse("remove.html", {
-        "request": request,
-        "page_location":"remove"
-    })
-
 @app.get("/calendars")
 def calendars(request: Request):
     return templates.TemplateResponse("calendars.html", {
@@ -110,8 +116,22 @@ def calendars(request: Request):
     })
 
 @app.get("/calculator")
-def calculators(request: Request):
+def calculator(request: Request):
     return templates.TemplateResponse("calculator.html", {
         "request": request,
         "page_location":"calculator"
+    })
+
+@app.get("/settings")
+def remove(request: Request):
+    return templates.TemplateResponse("settings.html", {
+        "request": request,
+        "page_location":"settings"
+    })
+
+@app.get("/support")
+def support(request: Request):
+    return templates.TemplateResponse("support.html", {
+        "request": request,
+        "page_location":"support"
     })

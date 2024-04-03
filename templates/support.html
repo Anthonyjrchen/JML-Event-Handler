@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="ui placeholder segment">
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <h1 class="ui centered header" >
+                Contact Us
+            </h1>
+            <div class="ui divider"></div>
+            <h3 class="meta">
+                Developer 1: Dana Neria (danangelaneria@gmail.com)
+            </h3>
+            <h3 class="meta">
+                Developer 2: Anthony Chen (anthonyjrchen@gmail.com)
+            </h3>
+        </div>
+        <div class="middle aligned column">
+        <div class="ui big button" id="ticket_button" style="background-color: #e96989; color:#fff">
+            <i class="ticket alternate icon"></i>
+            Submit Ticket
+        </div>
+        </div>
+    </div>
+    <div class="ui vertical divider">
+        Or
+    </div>
+</div>
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header" style="background-color:#e96989; color:#fff">
+      ProjectDA Support Ticket
+    </div>
+    <form class="ui form" style="overflow: visible;padding-top:10px">
+        <div class="field" style="margin-bottom:0px">
+            <input type="text" id="ticket_info[subject]" placeholder="Subject">
+        </div>
+        <div class="ui input">
+            <textarea type="text" id="ticket_info[body]" cols="150" rows="5" placeholder="Body"></textarea>
+        </div>
+    </form>
+    <div class="actions">
+        <div class="ui button" id="ticket_submit_button" style="background-color: #e96989; color:#fff">Submit</div>
+    </div>
+</div>
+<script>
+    $('#ticket_button').on('click', function() {
+        $('.ui.modal').modal('show');
+    })
+    $('#ticket_submit_button').on('click', function() {
+        $('.ui.modal').modal('hide');
+        $.ajax({
+            url:"/ticket/submit",
+            type:"POST",
+            headers: {"subject":document.getElementById('ticket_info[subject]').value, "body":document.getElementById('ticket_info[body]').value},
+            async:false,
+            success:function(e) {
+                window.location.reload();
+            }
+        })
+    })
+</script>
+{% endblock %}

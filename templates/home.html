@@ -1,11 +1,90 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
+<style>
+    input {
+        background-color: #f0d6dc !important;
+    } 
+    input::placeholder {
+        color:#a8a8a8 !important;
+    }
+</style>
 <div>
-    <p>
-        Home Page!
-    </p>
+    <div class="ui two column grid" style="overflow: auto;margin-right:0px; min-height: 100vh;">
+        <div class="eleven wide column" style="overflow: visible;">
+            <div class="ui top attached tabular menu">
+                <a class="active item" id="home1" data-tab="add_event">
+                  Add Event
+                </a>
+                <a class="item" id="home2" data-tab="remove_event">
+                  Remove Event
+                </a>
+            </div>
+            <div class="ui bottom attached active tab segment" data-tab="add_event" style="min-width: 550px;">
+                <form class="ui form" style="overflow: visible;">
+                    <h4 class="ui dividing header">Trial and Court Information</h4>
+                    <div class="field">
+                        <div class="two fields">
+                            <div class="field">
+                                <!-- <label>JML File No.</label> -->
+                                <input type="text" class="input_box" name="event_info[JML_file_number]" placeholder="JML File No.">
+                            </div>
+                            <div class="field">
+                                <!-- <label>Court File No.</label> -->
+                                <input type="text" name="event_info[court_file_number]" placeholder="Court File No.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                      <div class="two fields">
+                        <div class="twelve wide field">
+                          <input type="text" name="event_info[style_of_cause]" placeholder="Style of Cause">
+                        </div>
+                        <div class="four wide field">
+                            <div class="ui calendar">
+                                <div class="ui input left icon">
+                                  <i class="calendar icon"></i>
+                                  <input type="text" placeholder="Trial Date" name="event_info[trial_date]">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+                <h4 class="ui dividing header">Calculator Information</h4>
+                <div class="ui segment">
+                    <h1 class="ui header" id="calendar_input">No Date Input Yet</h1>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="remove_event">
+                <div class="ui header">
+                    REMOVE EVENT HERE
+                </div>
+            </div>
+        </div>
+        <div class=" five wide column" style="overflow: visible;">
+            <div class="ui segment" style="margin-top:41px;">
+            
+            </div>
+        </div>
+    </div>
 </div>
 
+
+
+<script>
+    $('.ui.top.attached.tabular.menu .item').tab();
+    $('#home1').on('click', function(){
+        $('#home1').addClass('active').siblings().removeClass('active');
+    })
+    $('#home2').on('click', function() {
+        $('#home2').addClass('active').siblings().removeClass('active');
+    })
+    $('.ui.calendar').calendar({
+        type: 'date',
+        onChange: function(date, text) {
+            document.getElementById('calendar_input').innerText = text;
+        }
+    })
+</script>
 {% endblock %}

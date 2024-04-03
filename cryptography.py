@@ -22,7 +22,7 @@ def get_password_hash(password):
 
 
 '''
-AUTH_JWT
+JWT_AUTH
 '''
 class Settings(BaseModel):
     authjwt_secret_key: str = SECRET_KEY

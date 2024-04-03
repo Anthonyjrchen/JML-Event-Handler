@@ -4,9 +4,13 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+        <title>ProjectDA</title>
+        <link rel="icon" href=".\static\ProjectDAlogo.png" type="image/x-icon"/>
         <style>
             html,body {
                 margin: 0;
+                background-color: #ebedf0;
+                font-family: sans-serif;
               /* could add font here too */
             }
             .meta{
@@ -14,7 +18,7 @@
             }
             .ui.menu {
                 border-radius: 0px;
-                font-family: American Typewriter, serif;
+                font-family: sans-serif;
             }
             .ui.segment{
                 margin:0;
@@ -22,10 +26,17 @@
           </style>
     </head>
     <body>
-        <div class="container" style="background-color: #ffffff;padding: 0; min-height:100vh;display: flex;flex-direction: row;overflow-y: auto;">
+        <div class="container" style="padding: 0; min-height:100vh;display: flex;flex-direction: row;overflow: auto;">
             <div class="ui segment" style="padding:0px;border-bottom:None;border-left: None;border-top: None;">
                 <div class="ui left fluid inverted pointing large vertical menu" style="background-color: #e96989;height:100%;width:270px;overflow-x:hidden;overflow-y: visible;">
-                    <div class="item"><h2>ProjectDA</h2></div>
+                    <div class="item">
+                        <h2 class="ui header">
+                            <img class="ui image" src=".\static\ProjectDAlogoinverted.png">
+                            <div class="content" style="color:#ffffff">
+                                ProjectDA
+                            </div>
+                        </h2>
+                    </div>
                     <div class="item">
                         <div class="ui fluid horizontal card" style=" background-color: #e78ca3; min-width: 200px;">
                             <div class="image" style="background-color: #e78ca3; width:70px; height:75px;">
@@ -57,10 +68,6 @@
                         <i class="home icon"></i>
                         Home
                     </a>
-                    <a class="borderless item" id="remove">
-                        <i class="trash alternate icon"></i>
-                        Delete
-                    </a>
                     <a class="borderless item" id="calendars">
                         <i class="calendar alternate icon"></i>
                         Calendars
@@ -81,7 +88,7 @@
                         <i class="question circle icon"></i>
                         Support & Help
                     </a>
-                    <div style="padding-top:240px">
+                    <div style="padding-top:285px">
     
                     </div>
                     <a class="borderless item" id="sign_out">
@@ -91,14 +98,14 @@
                 </div>
             </div>
             <div style="width:100%">
-                <div class="ui top footer">
+                <!-- <div class="ui top footer">
                     <h1 style="padding-top:10px; padding-left:10px;">
                         JML Event Handler
                     </h1>
                     <div class="ui divider" style="border:0.5px solid #8a8888">
     
                     </div>
-                </div>
+                </div> -->
                 <div style="padding:10px">
                     {% block content %}
                     {% endblock %}
@@ -109,12 +116,14 @@
     <script>
         if ('{{page_location}}'=="home") {
             $('#home').addClass('active').siblings().removeClass('active');
-        } else if('{{page_location}}'=="remove"){
-            $('#remove').addClass('active').siblings().removeClass('active');
         } else if('{{page_location}}'=="calendars"){
             $('#calendars').addClass('active').siblings().removeClass('active');
         } else if('{{page_location}}'=="calculator"){
             $('#calculator').addClass('active').siblings().removeClass('active');
+        } else if('{{page_location}}'=="settings"){
+            $('#settings').addClass('active').siblings().removeClass('active');
+        } else if('{{page_location}}'=="support"){
+            $('#support').addClass('active').siblings().removeClass('active');
         }
 
         $('.borderless.item').on('click', function() {
