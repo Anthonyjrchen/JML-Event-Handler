@@ -2,25 +2,34 @@
 
 {% block content %}
 
-<div class="ui placeholder segment">
-    <div class="ui two column stackable grid">
-        <div class="column">
-            <h1 class="ui centered header" >
-                Contact Us
-            </h1>
-            <div class="ui divider"></div>
-            <h3 class="meta">
+<!-- <style>
+    .ui.grid {
+        display:flex; 
+        margin: -1rem -1rem;
+        background-color: blue;
+    }
+</style> -->
+<div class="ui segment">
+    <div class="ui two column stretched stackable grid">
+        <div class="column" style="padding:0;">
+            <div class="ui top footer" style="background-color: #e96989;padding:15px;">
+                <h1 class="ui centered header" style="color:#fff;">
+                    Contact Us
+                </h1>
+            </div>
+            
+            <h3 class="meta" style="padding-left:10px;">
                 Developer 1: Dana Neria (danangelaneria@gmail.com)
             </h3>
-            <h3 class="meta">
+            <h3 class="meta" style="padding-left:10px;padding-bottom:30px;">
                 Developer 2: Anthony Chen (anthonyjrchen@gmail.com)
             </h3>
         </div>
-        <div class="middle aligned column">
-        <div class="ui big button" id="ticket_button" style="background-color: #e96989; color:#fff">
-            <i class="ticket alternate icon"></i>
-            Submit Ticket
-        </div>
+        <div class="middle aligned column" style="justify-content: center; align-items: center;">
+            <div class="ui big button" id="ticket_button" style="background-color: #e96989; color:#fff; width:200px;">
+                <i class="ticket alternate icon"></i>
+                Submit Ticket
+            </div>
         </div>
     </div>
     <div class="ui vertical divider">
