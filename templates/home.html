@@ -8,6 +8,10 @@
     input::placeholder {
         color:#a8a8a8 !important;
     }
+    .calculatorheader th {
+        background-color: #e96989 !important;
+        color:#fff !important;
+    }
 </style>
 <div>
     <div class="ui two column grid" style="overflow: auto;margin-right:0px; min-height: 100vh;">
@@ -25,15 +29,13 @@
             </div>
             <div class="ui bottom attached active tab segment" data-tab="add_event" style="min-width: 550px;">
                 <form class="ui form" style="overflow: visible;">
-                    <h4 class="ui dividing header">Trial and Court Information</h4>
+                    <h2 class="ui dividing header">Trial and Court Information</h2>
                     <div class="field">
                         <div class="two fields">
                             <div class="field">
-                                <!-- <label>JML File No.</label> -->
                                 <input type="text" class="input_box" name="event_info[JML_file_number]" placeholder="JML File No.">
                             </div>
                             <div class="field">
-                                <!-- <label>Court File No.</label> -->
                                 <input type="text" name="event_info[court_file_number]" placeholder="Court File No.">
                             </div>
                         </div>
@@ -54,10 +56,81 @@
                       </div>
                     </div>
                 </form>
-                <h4 class="ui dividing header">Calculator Information</h4>
-                <div class="ui segment">
-                    <h1 class="ui header" id="calendar_input">No Date Input Yet</h1>
-                </div>
+                <!-- Calculator information segment -->
+                <h2 class="ui dividing header" id="calendar_input">Calculator Information: Inputted date = N/A</h2>
+                <table class="ui celled table">
+                    <thead>
+                        <tr class="calculatorheader">
+                            <th>Form name</th>
+                            <th>Due Date</th>
+                            <th>Reminder Dates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                            <h2 class="ui header">
+                                <i class="file alternate icon"></i>
+                                <div class="content">
+                                  EXPERT'S REPORT
+                                  <div class="sub header">Must serve at least 84 days before scheduled trial date</div>
+                                </div>
+                            </h2>
+                        </td>
+                        <td class="collapsing">
+                            <h4 class="ui header">
+                                30/6/2025
+                            </h4>
+                        </td>
+                        <td class="right aligned collapsing">
+                            <table class="ui celled table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui header">
+                                                1 month
+                                            </h4>
+                                        </td>
+                                        <td>
+                                            6/4/2024
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui header">
+                                                2 weeks
+                                            </h4>
+                                        </td>
+                                        <td>
+                                            20/4/2024
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui header">
+                                                1 week
+                                            </h4>
+                                        </td>
+                                        <td>
+                                            27/4/2024
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui header">
+                                                1 day
+                                            </h4>
+                                        </td>
+                                        <td>
+                                            3/5/2024
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
             <div class="ui bottom attached tab segment" data-tab="remove_event">
                 <div class="ui header">
@@ -72,7 +145,7 @@
         </div>
         <div class=" five wide column" style="overflow: visible;">
             <div class="ui segment" style="margin-top:41px;">
-            
+
             </div>
         </div>
     </div>
@@ -91,8 +164,9 @@
     $('.ui.calendar').calendar({
         type: 'date',
         onChange: function(date, text) {
-            document.getElementById('calendar_input').innerText = text;
+            document.getElementById('calendar_input').innerText = "Calculator Information: Inputted date = " + text;
         }
     })
+    $('.ui.dropdown').dropdown();
 </script>
 {% endblock %}
