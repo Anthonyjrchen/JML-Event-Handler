@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     input {
-        background-color: #f0d6dc !important;
+        background-color: #f3e0e5 !important;
     } 
     input::placeholder {
         color:#a8a8a8 !important;
@@ -12,140 +12,909 @@
         background-color: #e96989 !important;
         color:#fff !important;
     }
+    .ui.two.column.grid {
+        overflow: auto !important;
+        margin-right:0px !important;
+        min-height: 100% !important;
+    }
+    .ui.bottom.attached.active.tab.segment {
+        min-width:700px !important;
+        min-height: 770px !important;
+        overflow: auto !important;
+        margin-bottom:0 !important;
+    }
+    .ui.celled.table {
+        min-height:100% !important;
+    }
+    .ui.top.attached.tabular.menu .active.item {
+        color:#e96989 !important;
+    }
+    .ui.top.attached.tabular.menu .item {
+        color:#ffffff !important;
+    }
+    td {
+        color:#572e37;
+    }
 </style>
 <div>
-    <div class="ui two column grid" style="overflow: auto;margin-right:0px; min-height: 100vh;">
-        <div class="eleven wide column" style="overflow: visible;">
-            <div class="ui top attached tabular menu">
-                <a class="active item" id="home1" data-tab="add_event">
-                    Add Event
-                </a>
-                <a class="item" id="home2" data-tab="remove_event">
-                    Remove Event
-                </a>
-                <a class="item" id="home3" data-tab="reschedule_event">
-                    Reschedule Event
-                </a>
-            </div>
-            <div class="ui bottom attached active tab segment" data-tab="add_event" style="min-width: 550px;">
-                <form class="ui form" style="overflow: visible;">
-                    <h2 class="ui dividing header">Trial and Court Information</h2>
-                    <div class="field">
-                        <div class="two fields">
-                            <div class="field">
-                                <input type="text" class="input_box" name="event_info[JML_file_number]" placeholder="JML File No.">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="event_info[court_file_number]" placeholder="Court File No.">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                      <div class="two fields">
-                        <div class="twelve wide field">
-                          <input type="text" name="event_info[style_of_cause]" placeholder="Style of Cause">
-                        </div>
-                        <div class="four wide field">
-                            <div class="ui calendar">
-                                <div class="ui input left icon">
-                                  <i class="calendar icon"></i>
-                                  <input type="text" placeholder="Trial Date" name="event_info[trial_date]">
+    <div style="padding-left:50px;padding-top:20px">
+        <h1 class="ui header">
+            Event Control Center
+        </h1>
+        <div class="ui two column grid">
+            <div class="eleven wide column" style="overflow: visible;">
+                <div class="ui top attached tabular menu" style="background-color: #e96989;">
+                    <a class="active item" id="home1" data-tab="add_event">
+                        Add Event
+                    </a>
+                    <a class="item" id="home2" data-tab="remove_event">
+                        Remove Event
+                    </a>
+                    <a class="item" id="home3" data-tab="reschedule_event">
+                        Reschedule Event
+                    </a>
+                </div>
+                <div class="ui bottom attached active tab segment" data-tab="add_event" style="min-width: 550px;">
+                    <form class="ui form" style="overflow: visible;">
+                        <h2 class="ui dividing header">Trial and Court Information</h2>
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <input type="text" class="input_box" name="event_info[JML_file_number]" placeholder="JML File No.">
+                                </div>
+                                <div class="field">
+                                    <input type="text" name="event_info[court_file_number]" placeholder="Court File No.">
                                 </div>
                             </div>
                         </div>
-                      </div>
-                    </div>
-                </form>
-                <!-- Calculator information segment -->
-                <h2 class="ui dividing header" id="calendar_input">Calculator Information: Inputted date = N/A</h2>
-                <table class="ui celled table">
-                    <thead>
-                        <tr class="calculatorheader">
-                            <th>Form name</th>
-                            <th>Due Date</th>
-                            <th>Reminder Dates</th>
+                        <div class="field">
+                          <div class="two fields">
+                            <div class="twelve wide field">
+                              <input type="text" name="event_info[style_of_cause]" placeholder="Style of Cause">
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui calendar">
+                                    <div class="ui input left icon">
+                                      <i class="calendar icon"></i>
+                                      <input type="text" placeholder="Trial Date" name="event_info[trial_date]">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </form>
+                    <!-- Calculator information segment -->
+                    <h2 class="ui dividing header" id="calendar_input">Calculator Information: Inputted date = N/A</h2>
+                    <table class="ui celled first second last stuck scrolling table">
+                        <thead>
+                            <tr class="calculatorheader">
+                                <th class="seven wide">Form name</th>
+                                <th>Due Date</th>
+                                <th>Reminder Dates</th>
+                            </tr>
+                        </thead>
+                        <tbody style="min-height:490px;">
+                          <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        NOTICE TO MEDIATE, FORM 1
+                                      <div class="sub header">Must serve no later than 120 days before scheduled trial date
+                                      </div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                      EXPERT'S REPORT
+                                      <div class="sub header">Must serve at least 84 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            <h2 class="ui header">
-                                <i class="file alternate icon"></i>
-                                <div class="content">
-                                  EXPERT'S REPORT
-                                  <div class="sub header">Must serve at least 84 days before scheduled trial date</div>
-                                </div>
-                            </h2>
-                        </td>
-                        <td class="collapsing">
-                            <h4 class="ui header">
-                                30/6/2025
-                            </h4>
-                        </td>
-                        <td class="right aligned collapsing">
-                            <table class="ui celled table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <h4 class="ui header">
-                                                1 month
-                                            </h4>
-                                        </td>
-                                        <td>
-                                            6/4/2024
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4 class="ui header">
-                                                2 weeks
-                                            </h4>
-                                        </td>
-                                        <td>
-                                            20/4/2024
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4 class="ui header">
-                                                1 week
-                                            </h4>
-                                        </td>
-                                        <td>
-                                            27/4/2024
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4 class="ui header">
-                                                1 day
-                                            </h4>
-                                        </td>
-                                        <td>
-                                            3/5/2024
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <div class="ui bottom attached tab segment" data-tab="remove_event">
-                <div class="ui header">
-                    REMOVE EVENT HERE
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        EXAMINATIONS FOR DISCOVERY
+                                      <div class="sub header">*internal deadline* must be held at least 60 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 months
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        TRIAL BRIEF, FORM 41
+                                      <div class="sub header">Must serve at least 56 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    Plaintiff Due — N/A
+                                </h4>
+                                <h4 class="ui header">
+                                    OP Due — N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        NOTICE TO ADMIT, FORM 23
+                                      <div class="sub header">Must serve at least 56 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        RESPONDING REPORTS
+                                      <div class="sub header">Must serve at least 42 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        TRIAL MANAGEMENT CONFERENCE
+                                      <div class="sub header">Must be held at least 28 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    4 months
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    3 months
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 months
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        NOTICE OF OBJECTION
+                                      <div class="sub header">Must be served on the earlier date of the TMC and 21 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 day
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        TRIAL RECORD
+                                      <div class="sub header">Must be filed by party who filed the Notice of Trial at least 14 days before but not more than 28 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        TRIAL CERTIFICATE, FORM 42
+                                      <div class="sub header">Must be filed by all parties at least 14 days before but not more than 28 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        NOTICE OF EXAMINATION
+                                      <div class="sub header">Must be served at least 7 days before the scheduled date of examination</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        INSPECTION OF PHOTOGRAPHS, ETC.
+                                      <div class="sub header">*internal deadline* at least 7 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="seven wide">
+                                <h2 class="ui header">
+                                    <i class="file alternate icon"></i>
+                                    <div class="content">
+                                        NOTICE TO PRODUCE, FORM 43
+                                      <div class="sub header">Must be served at least 2 days before scheduled trial date</div>
+                                    </div>
+                                </h2>
+                            </td>
+                            <td class="collapsing">
+                                <h4 class="ui header">
+                                    N/A
+                                </h4>
+                            </td>
+                            <td class="right aligned collapsing">
+                                <table class="ui celled table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 month
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    2 weeks
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="ui header">
+                                                    1 week
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                N/A
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+    
+    
+                <div class="ui bottom attached tab segment" data-tab="remove_event">
+                    <div class="ui header">
+                        REMOVE EVENT HERE
+                    </div>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="reschedule_event">
+                    <div class="ui header">
+                        RESCHEDULE EVENT HERE
+                    </div>
                 </div>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="reschedule_event">
-                <div class="ui header">
-                    RESCHEDULE EVENT HERE
+            <div class=" five wide column" style="overflow: visible;">
+                <div class="ui segment" style="margin-top:41px;">
+    
                 </div>
-            </div>
-        </div>
-        <div class=" five wide column" style="overflow: visible;">
-            <div class="ui segment" style="margin-top:41px;">
-
             </div>
         </div>
     </div>
