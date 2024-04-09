@@ -10,7 +10,8 @@ from fastapi_jwt_auth.exceptions import AuthJWTException
 import models
 from models import User
 import cryptography
-import random
+import pandas as pd
+import win32com.client as client
 
 
 '''
@@ -19,6 +20,9 @@ FASTAPI SETUP
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+outlook = client.Dispatch("Outlook.Application")
+namespace = outlook.GetNamespace("MAPI")
+
 
 '''
 DATABASE SETUP AND CONNECTION
@@ -102,10 +106,14 @@ def landing_page(request: Request):
     })
 
 @app.get("/home")
-def home(request: Request):
+async def home(request: Request):
+    calendars = []
+    for idx, a in enumerate(namespace.getDefaultFolder(9).Folders):
+        calendars.append(a.name)
     return templates.TemplateResponse("home.html", {
         "request": request,
-        "page_location":"home"
+        "page_location":"home",
+        "calendars":calendars,
     })
 
 @app.get("/calendars")
