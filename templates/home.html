@@ -35,6 +35,9 @@
     td {
         color:#572e37;
     }
+    .ui.toggle.checkbox input[type=checkbox]:checked~label::before, .ui.toggle.checkbox input[type=checkbox]:checked:focus~label::before {
+        background:#e96989 !important;
+    }
 </style>
 <div>
     <div style="padding-left:50px;padding-top:20px">
@@ -42,7 +45,7 @@
             Event Control Center
         </h1>
         <div class="ui two column grid">
-            <div class="eleven wide column" style="overflow: visible;">
+            <div class="eleven wide column" style="overflow: visible;>
                 <div class="ui top attached tabular menu" style="background-color: #e96989;">
                     <a class="active item" id="home1" data-tab="add_event">
                         Add Event
@@ -897,9 +900,6 @@
                         </tbody>
                     </table>
                 </div>
-    
-    
-    
                 <div class="ui bottom attached tab segment" data-tab="remove_event">
                     <div class="ui header">
                         REMOVE EVENT HERE
@@ -911,9 +911,70 @@
                     </div>
                 </div>
             </div>
-            <div class=" five wide column" style="overflow: visible;">
-                <div class="ui segment" style="margin-top:41px;">
-    
+            <div class="hide five wide column" style="overflow: visible;">
+                <h1 class="ui header">
+                    Shared Calendars
+                </h1>
+                <div class="ui segment" style="margin-top:20px; padding:0px;">
+                    <table class="ui celled scrolling table">
+                        <thead>
+                            <tr class="calculatorheader">
+                                <th class="three wide center aligned"></th>
+                                <th>Name</th>
+                                <th>Occupation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="three wide center aligned">
+                                    <div class="ui toggle fitted checkbox">
+                                        <input type="checkbox" id="checker">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4 class="ui header">
+                                        Dana Neria
+                                    </h4>
+                                </td>
+                                <td>
+                                    <h4 class="ui header">
+                                        Student
+                                    </h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="three wide center aligned">
+                                    <div class="ui toggle fitted checkbox">
+                                        <input type="checkbox" id="checker">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4 class="ui header">
+                                        Anthony Chen
+                                    </h4>
+                                </td>
+                                <td>
+                                    <h4 class="ui header">
+                                        Student
+                                    </h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">
+                                    <div class="ui small toggle icon button" style="background-color: #e96989; color:#ffffff">
+                                        All
+                                    </div>
+                                <!-- </th> -->
+                                <!-- <th colspan="2"> -->
+                                <div class="ui right floated small labeled icon button" style="background-color: #e96989; color:#ffffff">
+                                    <i class="user icon" style="color:#ffffff"></i> Add To Calendars
+                                </div>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
@@ -923,6 +984,15 @@
 
 
 <script>
+    $('.five.wide.column').transition('hide');
+    $('.eleven.wide.column').transition('hide');
+    
+    $('.eleven.wide.column').transition({
+        animation:'scale in',
+    });
+    $('.five.wide.column').transition({
+        animation:'scale in',
+    });
     $('.ui.top.attached.tabular.menu .item').tab();
     $('#home1').on('click', function(){
         $('#home1').addClass('active').siblings().removeClass('active');
@@ -937,5 +1007,25 @@
         }
     })
     $('.ui.dropdown').dropdown();
+
+    let selected_list = [];
+    $('.ui.segment .checkbox').checkbox({
+        onChecked: function() {
+          selected_list.push($(this).parent().parent().siblings().eq(0).text());
+        },
+        onUnchecked: function() {
+          var selected_index = selected_list.indexOf($(this).parent().parent().siblings().eq(0).text());
+          if (selected_index==selected_list.length-1) {
+            var firstSection = selected_list.slice(0,selected_index);
+            selected_list=firstSection;
+          } else {
+            var firstSection = selected_list.slice(0,selected_index);
+            var secondSection = selected_list.slice(selected_index+1,);
+            selected_list = firstSection.concat(secondSection);
+          }
+        }
+      })
+
+      $('.ui.segment .checkbox').checkbox('attach events', '.toggle.button');
 </script>
 {% endblock %}
