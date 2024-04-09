@@ -8,3 +8,4 @@ passlib[bcrypt]
 fastapi-jwt-auth[asymmetric]
 pycryptodome
 pandas
+pywin32
