@@ -45,7 +45,7 @@
             Event Control Center
         </h1>
         <div class="ui two column grid">
-            <div class="eleven wide column" style="overflow: visible;>
+            <div class="eleven wide column" style="overflow: visible;">
                 <div class="ui top attached tabular menu" style="background-color: #e96989;">
                     <a class="active item" id="home1" data-tab="add_event">
                         Add Event
@@ -925,6 +925,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for calendar in calendars %}
                             <tr>
                                 <td class="three wide center aligned">
                                     <div class="ui toggle fitted checkbox">
@@ -933,32 +934,17 @@
                                 </td>
                                 <td>
                                     <h4 class="ui header">
-                                        Dana Neria
+                                        {{calendar}}
                                     </h4>
                                 </td>
                                 <td>
                                     <h4 class="ui header">
                                         Student
+                                        <!-- add if calendar in list of paralegals that is passed thru jinja2 -->
                                     </h4>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="three wide center aligned">
-                                    <div class="ui toggle fitted checkbox">
-                                        <input type="checkbox" id="checker">
-                                    </div>
-                                </td>
-                                <td>
-                                    <h4 class="ui header">
-                                        Anthony Chen
-                                    </h4>
-                                </td>
-                                <td>
-                                    <h4 class="ui header">
-                                        Student
-                                    </h4>
-                                </td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                         <tfoot>
                             <tr>
