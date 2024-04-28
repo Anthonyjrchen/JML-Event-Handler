@@ -108,8 +108,12 @@ def landing_page(request: Request):
 @app.get("/home")
 async def home(request: Request):
     calendars = []
+    temp = []
     for idx, a in enumerate(namespace.getDefaultFolder(9).Folders):
         calendars.append(a.name)
+    # for idx, a in namespace.getSharedDefaultFolder(9).Folders:
+    #     temp.append(a.name)
+    # return temp
     return templates.TemplateResponse("home.html", {
         "request": request,
         "page_location":"home",
