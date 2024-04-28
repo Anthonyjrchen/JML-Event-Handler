@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="container" style="display:flex; flex-direction: column;overflow: auto; justify-content: center;align-items: center; border-radius: 20px;">
-            <h1 class="ui massive centered header" style="padding-top:400px; color:#e96989;">
+            <h1 class="ui massive centered header" style="padding-top:10%; color:#e96989;">
                 JML Event Handler
             <!-- </h1>
             <div class="ui container" style="display:flex;flex-direction: row;overflow: auto; justify-content: center;align-items:baseline;">
@@ -78,10 +78,10 @@
                                 </div>
                                 <div class="field">
                                     <div class="header" style="text-align: left;">Password</div>
-                                    <input type="password" name="password">
+                                    <input placeholder="********"type="password" name="password">
                                 </div>
                             </div>
-                            <div class="ui primary submit button" style="background-color:#e96989; margin-top: 10px;">Submit</div>
+                            <div class="ui primary submit button" id="submit_button"style="background-color:#e96989; margin-top: 10px;">Submit</div>
                             <div class="ui error message"></div>
                           </form>
                     </div>
@@ -97,5 +97,8 @@
             .dropdown()
         ;
         
+        $('#submit_button').on('click', function() {
+            window.location.href="/home"
+        })
     </script>
 </html>
