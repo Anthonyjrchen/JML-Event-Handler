@@ -1,4 +1,11 @@
 fastapi
-uvicorn
+uvicorn[standard]
 jinja2
 sqlalchemy
+pydantic==1.10.12
+python-jose[cryptography]
+passlib[bcrypt]
+fastapi-jwt-auth[asymmetric]
+pycryptodome
+pandas
+pywin32
