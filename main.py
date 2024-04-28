@@ -127,13 +127,6 @@ def calendars(request: Request):
         "page_location":"calendars"
     })
 
-@app.get("/calculator")
-def calculator(request: Request):
-    return templates.TemplateResponse("calculator.html", {
-        "request": request,
-        "page_location":"calculator"
-    })
-
 @app.get("/settings")
 def remove(request: Request):
     return templates.TemplateResponse("settings.html", {
