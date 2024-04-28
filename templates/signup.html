@@ -6,15 +6,20 @@
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
         <style>
             html,body {
-                background-color: #ebedf0;
+                background-color: #f7e2f0;
                 margin: 0;
               /* could add font here too */
             }
+            input:focus, .menu, *:focus {
+                border-color: #8a5761 !important;
+                outline:none !important;
+            }
+            
           </style>
     </head>
     <body>
-        <div class="container" style="display:flex;flex-direction: column;overflow: auto; justify-content: center;align-items: center;">
-            <h1 class="ui massive centered header" style="padding-top:70px;color:#e96989;">
+        <div class="container" style="display:flex; flex-direction: column;overflow: auto; justify-content: center;align-items: center; border-radius: 20px;">
+            <h1 class="ui massive centered header" style="padding-top:400px; color:#e96989;">
                 JML Event Handler
             <!-- </h1>
             <div class="ui container" style="display:flex;flex-direction: row;overflow: auto; justify-content: center;align-items:baseline;">
@@ -36,14 +41,50 @@
                         FastAPI
                     </div>
                 </h2>
-            </div>
-            <div class="ui segment" style="min-width:500px;max-width:650px;overflow: visible; padding:0">
-                <div class="ui centered header" style="padding-top:10px">
-                    Create a ProjectDA account
-                </div>
-                <div class="ui footer segment" style="margin:0;border-radius: 0;background-color:#f0ecf4;box-shadow: None;border:0;">
-
-                </div>
+            </div> -->
+            <div class="ui segment" style="min-width:500px;max-width:650px; overflow: visible; padding:20px; margin-top: 20px;">
+                <div class="ui centered header" style="padding-top:10px; color:#8a5761;">
+                    Sign Up
+                </div> 
+                <!-- first + last name, occupation drop down menu -->
+                    <div> 
+                        <form class="ui form ">
+                            <div class="two fields"> 
+                                <div class="field">
+                                    <div class="header" style="text-align: left;">First Name</div>
+                                    <input placeholder="John" name="firstName" type="text">
+                                </div>
+                                <div class="field">
+                                    <div class="header" style="text-align: left;">Last Name</div>
+                                    <input placeholder="Doe" name="lastName" type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="header" style="text-align: left;">Occupation</div>
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="occupation">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text" style="font-weight: lighter;">Occupation</div>
+                                        <div class="menu">
+                                            <div class="item" data-value="1">Paralegal</div>
+                                            <div class="item" data-value="0">Lawyer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two fields"> 
+                                <div class="field">
+                                    <div class="header" style="text-align: left;">Username</div>
+                                    <input placeholder="Username" name="username" type="text">
+                                </div>
+                                <div class="field">
+                                    <div class="header" style="text-align: left;">Password</div>
+                                    <input type="password" name="password">
+                                </div>
+                            </div>
+                            <div class="ui primary submit button" style="background-color:#e96989; margin-top: 10px;">Submit</div>
+                            <div class="ui error message"></div>
+                          </form>
+                    </div>
             </div>
         </div>
         <div style="padding:10px">
@@ -51,4 +92,10 @@
             {% endblock %}
         </div>
     </body>
+    <script>
+        $('.selection.dropdown')
+            .dropdown()
+        ;
+        
+    </script>
 </html>
