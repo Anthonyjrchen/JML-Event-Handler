@@ -8,32 +8,89 @@
         <link rel="icon" href=".\static\ProjectDAlogoInverted.png" type="image/x-icon"/>
         <style type="text/css">
             body {
-              background-color: #ffffff;
+              background-color: #f7e2f0;
               /* could add font here too */
             }
             .ui.menu {
                 border-radius: 0px !important;
             }
+
+            .signup {
+                color: #e799aa;
+            }
+            
+            .signup:hover {
+                color: #ecc7cf;
+            }
           </style>
     </head>
     
     <body>
-        <div class="ui centered segment" style="display:flex;width:100%;height:100%; align-items: center;justify-content: center;">
-            <button class="massive ui button" id="bigButton" style="background-color: #e96989; color: #ffffff;">
-                GO TO THE APP????
-            </button>
-            <button class="massive ui button" id="signup_button" style="background-color: #e96989; color: #ffffff;">
-                SIGN UP???
-            </button>
+        <div class="container" style="display:flex; flex-direction: column;overflow: auto; justify-content: center;align-items: center; border-radius: 20px;">
+            <h1 class="ui massive centered header" style="padding-top:10%; color:#e96989;">
+                JML Event Handler
+            <!-- </h1>
+            <div class="ui container" style="display:flex;flex-direction: row;overflow: auto; justify-content: center;align-items:baseline;">
+                <h2 class="ui small header" style="padding-right:10px">
+                    <img class="ui image" src="./static/pythonlogo.png">
+                    <div class="content">
+                        Python
+                    </div>
+                </h2>
+                <h2 class="ui small header" style="padding-right:10px">
+                    <img class="ui image" src="./static/htmlicon.png">
+                    <div class="content">
+                        Html5
+                    </div>
+                </h2>
+                <h2 class="ui small header">
+                    <img class="ui image" src="./static/fastapilogo.png">
+                    <div class="content">
+                        FastAPI
+                    </div>
+                </h2>
+            </div> -->
+            <div class="ui segment" style="min-width:400px;max-width:500px; overflow: visible; padding:20px; margin-top: 20px;">
+                <div class="ui centered header" style="padding-top:10px; color:#8a5761;">
+                    Login
+                </div> 
+                <!-- first + last name, occupation drop down menu -->
+                    <div> 
+                        <form class="ui form ">
+                            <div class="field">
+                                <div class="header" style="text-align: left;">Username</div>
+                                <input placeholder="Username" name="username" type="text">
+                            </div>
+                            <div class="field">
+                                <div class="header" style="text-align: left;">Password</div>
+                                <input placeholder="********" type="password" name="password">
+                            </div>
+                            <div class="ui primary submit button" id="submit_button"style="background-color:#e96989; margin-top: 10px;">Submit</div>
+                            <div class="ui error message"></div>
+                            <div>
+                                <a class="signup" href="/signup" id="signup_button">Don't have an account? Sign up</a>
+                            </div>
+                          </form>
+                    </div>
+            </div>
+        </div>
+        <div style="padding:10px">
+            {% block content %}
+            {% endblock %}
         </div>
     </body>
     <script>
-        $('#bigButton').on('click', function() {
+        $('.selection.dropdown')
+            .dropdown()
+        ;
+        
+        $('#submit_button').on('click', function() {
             window.location.href="/home"
         })
-        $('#signup_button').on('click', function() {
-            window.location.href="/signup"
-        })
-
+        
+        
     </script>
 </html>
+
+
+
