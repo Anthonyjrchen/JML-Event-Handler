@@ -6,6 +6,7 @@ class User(Base):
     username = Column(String, unique=True, index = True)
     user_id = Column(Integer, primary_key = True, index = True)
     hashed_password = Column(String)
-    gender = Column(String)
-    lawyer = Column(Boolean)
+    first_name = Column(String)
+    last_name = Column(String)
+    occupation = Column(Integer)
     
