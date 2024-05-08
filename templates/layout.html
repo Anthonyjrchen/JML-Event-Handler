@@ -50,7 +50,7 @@
                             </div> -->
                             <!-- <div class="ui right aligned content"> -->
                                 <h3 class="ui header" style="color:#ffffff;">
-                                    Welcome, Jana!
+                                    Welcome, {{fn}}!
                                 </h3>
                             <!-- </div> -->
                         <!-- </div> -->
@@ -89,7 +89,7 @@
                     <div style="padding-top:363px">
     
                     </div>
-                    <a class="borderless item" id="sign_out">
+                    <a class="borderless item" id="logout">
                         <i class="sign out alternate icon"></i>
                         Sign Out
                     </a>
@@ -126,7 +126,17 @@
 
         $('.borderless.item').on('click', function() {
             button_id = $(this).attr("id")
-            window.location.href="/" + button_id
+            if(button_id == "logout") {
+                $.ajax({
+                    url:'/logout',
+                    type:'DELETE',
+                    success:function() {
+                        window.location = "/"
+                    }
+                })
+            } else {
+                window.location.href="/" + button_id
+            }
         })
 
         

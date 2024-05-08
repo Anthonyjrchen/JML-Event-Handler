@@ -29,66 +29,63 @@
         <div class="container" style="display:flex; flex-direction: column;overflow: auto; justify-content: center;align-items: center; border-radius: 20px;">
             <h1 class="ui massive centered header" style="padding-top:10%; color:#e96989;">
                 JML Event Handler
-            <!-- </h1>
-            <div class="ui container" style="display:flex;flex-direction: row;overflow: auto; justify-content: center;align-items:baseline;">
-                <h2 class="ui small header" style="padding-right:10px">
-                    <img class="ui image" src="./static/pythonlogo.png">
-                    <div class="content">
-                        Python
-                    </div>
-                </h2>
-                <h2 class="ui small header" style="padding-right:10px">
-                    <img class="ui image" src="./static/htmlicon.png">
-                    <div class="content">
-                        Html5
-                    </div>
-                </h2>
-                <h2 class="ui small header">
-                    <img class="ui image" src="./static/fastapilogo.png">
-                    <div class="content">
-                        FastAPI
-                    </div>
-                </h2>
-            </div> -->
+            <!-- </h1> -->
             <div class="ui segment" style="min-width:400px;max-width:500px; overflow: visible; padding:20px; margin-top: 20px;">
                 <div class="ui centered header" style="padding-top:10px; color:#8a5761;">
                     Login
                 </div> 
-                <!-- first + last name, occupation drop down menu -->
-                    <div> 
-                        <form class="ui form ">
-                            <div class="field">
-                                <div class="header" style="text-align: left;">Username</div>
-                                <input placeholder="Username" name="username" type="text">
-                            </div>
-                            <div class="field">
-                                <div class="header" style="text-align: left;">Password</div>
-                                <input placeholder="********" type="password" name="password">
-                            </div>
-                            <div class="ui primary submit button" id="submit_button"style="background-color:#e96989; margin-top: 10px;">Submit</div>
-                            <div class="ui error message"></div>
-                            <div>
-                                <a class="signup" href="/signup" id="signup_button">Don't have an account? Sign up</a>
-                            </div>
-                          </form>
-                    </div>
+                    <form class="ui form" id="login_form">
+                        <div class="field">
+                            <div class="header" style="text-align: left;">Username</div>
+                            <input placeholder="Username" id="username" type="text">
+                        </div>
+                        <div class="field">
+                            <div class="header" style="text-align: left;">Password</div>
+                            <input placeholder="********" type="password" id="password">
+                        </div>
+                        <button class="ui primary button" style="background-color:#e96989; margin-top: 10px;">Submit</button>
+                        <div class="ui error message"></div>
+                        <div>
+                            <a class="signup" href="/signup" id="signup_button">Don't have an account? Sign up</a>
+                        </div>
+                        <div class="ui error message">
+                            <div class="header">Incorrect Login</div>
+                            <p>Username or password incorrect, please double check.</p>
+                        </div>
+                    </form>
             </div>
-        </div>
-        <div style="padding:10px">
-            {% block content %}
-            {% endblock %}
         </div>
     </body>
     <script>
-        $('.selection.dropdown')
-            .dropdown()
-        ;
-        
-        $('#submit_button').on('click', function() {
-            window.location.href="/home"
-        })
-        
-        
+        $(document).ready(function() {
+            const loginform = document.querySelector('#login_form');
+            loginform.addEventListener("submit", function(e) {
+                e.preventDefault();
+                validInputs();
+            });
+            function validInputs() {
+                var user_input = $('#username').val();
+                var pass_input = $('#password').val();
+                var body = {
+                    username: user_input,
+                    password: pass_input,
+                };
+                $.ajax({
+                    url:'/login',
+                    type:'POST',
+                    contentType: 'application/x-www-form-urlencoded',
+                    data: body,
+                    dataType:'json',
+                    success: function(return_val) {
+                        window.location="/home";
+                    },
+                    error: function() {
+                    document.getElementById("login_form").className = "ui form error";
+                  }
+                })
+            }
+            $('.selection.dropdown').dropdown();
+        });
     </script>
 </html>
 

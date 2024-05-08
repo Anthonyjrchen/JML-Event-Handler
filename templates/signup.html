@@ -21,84 +21,83 @@
         <div class="container" style="display:flex; flex-direction: column;overflow: auto; justify-content: center;align-items: center; border-radius: 20px;">
             <h1 class="ui massive centered header" style="padding-top:10%; color:#e96989;">
                 JML Event Handler
-            <!-- </h1>
-            <div class="ui container" style="display:flex;flex-direction: row;overflow: auto; justify-content: center;align-items:baseline;">
-                <h2 class="ui small header" style="padding-right:10px">
-                    <img class="ui image" src="./static/pythonlogo.png">
-                    <div class="content">
-                        Python
-                    </div>
-                </h2>
-                <h2 class="ui small header" style="padding-right:10px">
-                    <img class="ui image" src="./static/htmlicon.png">
-                    <div class="content">
-                        Html5
-                    </div>
-                </h2>
-                <h2 class="ui small header">
-                    <img class="ui image" src="./static/fastapilogo.png">
-                    <div class="content">
-                        FastAPI
-                    </div>
-                </h2>
-            </div> -->
+            <!-- </h1> -->
             <div class="ui segment" style="min-width:500px;max-width:650px; overflow: visible; padding:20px; margin-top: 20px;">
                 <div class="ui centered header" style="padding-top:10px; color:#8a5761;">
                     Sign Up
                 </div> 
-                <!-- first + last name, occupation drop down menu -->
-                    <div> 
-                        <form class="ui form ">
-                            <div class="two fields"> 
-                                <div class="field">
-                                    <div class="header" style="text-align: left;">First Name</div>
-                                    <input placeholder="John" name="firstName" type="text">
-                                </div>
-                                <div class="field">
-                                    <div class="header" style="text-align: left;">Last Name</div>
-                                    <input placeholder="Doe" name="lastName" type="text">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="header" style="text-align: left;">Occupation</div>
-                                    <div class="ui selection dropdown">
-                                        <input type="hidden" name="occupation">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text" style="font-weight: lighter;">Occupation</div>
-                                        <div class="menu">
-                                            <div class="item" data-value="1">Paralegal</div>
-                                            <div class="item" data-value="0">Lawyer</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="two fields"> 
-                                <div class="field">
-                                    <div class="header" style="text-align: left;">Username</div>
-                                    <input placeholder="Username" name="username" type="text">
-                                </div>
-                                <div class="field">
-                                    <div class="header" style="text-align: left;">Password</div>
-                                    <input placeholder="********"type="password" name="password">
-                                </div>
-                            </div>
-                            <div class="ui primary submit button" id="submit_button"style="background-color:#e96989; margin-top: 10px;">Submit</div>
-                            <div class="ui error message"></div>
-                          </form>
+                <form class="ui form" id="signup_form" name="signup_form" method="post">
+                    <div class="two fields"> 
+                        <div class="field">
+                            <div class="header" style="text-align: left;">First Name</div>
+                            <input placeholder="John" id="firstName" type="text">
+                        </div>
+                        <div class="field">
+                            <div class="header" style="text-align: left;">Last Name</div>
+                            <input placeholder="Doe" id="lastName" type="text">
+                        </div>
                     </div>
+                    <div class="field">
+                        <div class="header" style="text-align: left;">Occupation</div>
+                            <div class="ui selection dropdown">
+                                <input type="hidden" id="occupation">
+                                <i class="dropdown icon"></i>
+                                <div class="default text" style="font-weight: lighter;">Occupation</div>
+                                <div class="menu">
+                                    <div class="item" data-value="1">Paralegal</div>
+                                    <div class="item" data-value="0">Lawyer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two fields"> 
+                        <div class="field">
+                            <div class="header" style="text-align: left;">Username</div>
+                            <input placeholder="Username" id="username" type="text">
+                        </div>
+                        <div class="field">
+                            <div class="header" style="text-align: left;">Password</div>
+                            <input placeholder="********" type="password" id="password">
+                        </div>
+                    </div>
+                    <button class="ui primary button" style="background-color:#e96989; margin-top: 10px;">Submit</button>
+                    <div class="ui error message"></div>
+                </form>
             </div>
-        </div>
-        <div style="padding:10px">
-            {% block content %}
-            {% endblock %}
         </div>
     </body>
     <script>
-        $('.selection.dropdown')
-            .dropdown()
-        ;
-        
-        $('#submit_button').on('click', function() {
-            window.location.href="/home"
-        })
+        $(document).ready(function() {
+            const signupform = document.querySelector('#signup_form');
+            signupform.addEventListener("submit", function(e) {
+                e.preventDefault();
+                validInputs();
+            });
+            function validInputs() {
+                var user_input = $('#username').val();
+                var pass_input = $('#password').val();
+                var fn = $('#firstName').val();
+                var ln = $('#lastName').val();
+                var occupation = $('#occupation').val();
+                console.log("user: " + user_input  + " pass: " + pass_input + " fn and ln: " + fn + " " + ln + " and occupation is: " + occupation);
+                $.ajax({
+                    url:'/signup',
+                    type:'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"username": user_input, "password": pass_input, "first_name": fn, "last_name": ln, "occupation":occupation}),
+                    dataType: 'json',
+                    success: function(return_val) {
+                        if(return_val == "True") {
+                            window.location="/";
+                        } else if(return_val == "False") {
+                            alert("Username already exists, please try another username");
+                            window.location.reload();
+                        } else {
+                            alert("no returned value");
+                        }
+                    }
+                })
+            }
+            $('.selection.dropdown').dropdown();
+        });
     </script>
 </html>
