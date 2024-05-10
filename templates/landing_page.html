@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css"/>
@@ -81,11 +82,41 @@
                     },
                     error: function() {
                     document.getElementById("login_form").className = "ui form error";
-                  }
+                    }
                 })
             }
             $('.selection.dropdown').dropdown();
         });
+
+        $('.ui.form')
+            .form({
+                fields: {
+                username: {
+                    identifier: 'username',
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please enter a username'
+                    }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    errorLimit: 1,
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please enter a password'
+                    },
+                    {
+                        type   : 'minLength[8]',
+                        prompt : 'Your password must be at least {ruleValue} characters'
+                    }
+                    ]
+                },
+                }
+            })
+            ;
     </script>
 </html>
 

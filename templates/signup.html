@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
@@ -26,7 +27,7 @@
                 <div class="ui centered header" style="padding-top:10px; color:#8a5761;">
                     Sign Up
                 </div> 
-                <form class="ui form" id="signup_form" name="signup_form" method="post">
+                <form class="ui form" id="signup_form">
                     <div class="two fields"> 
                         <div class="field">
                             <div class="header" style="text-align: left;">First Name</div>
@@ -60,7 +61,9 @@
                         </div>
                     </div>
                     <button class="ui primary button" style="background-color:#e96989; margin-top: 10px;">Submit</button>
-                    <div class="ui error message"></div>
+                    <div class="ui error message">
+                        <p>Username is taken. Please choose another one.</p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -89,8 +92,8 @@
                         if(return_val == "True") {
                             window.location="/";
                         } else if(return_val == "False") {
-                            alert("Username already exists, please try another username");
-                            window.location.reload();
+                            document.getElementById("signup_form").className = "ui form error";
+                            $$(signup_form).className = "ui form error";
                         } else {
                             alert("no returned value");
                         }
@@ -99,5 +102,63 @@
             }
             $('.selection.dropdown').dropdown();
         });
+
+        $('.ui.form')
+            .form({
+                fields: {
+                first_name: {
+                    identifier: 'firstName',
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please enter your first name'
+                    }
+                    ]
+                },
+                last_name: {
+                    identifier: 'lastName',
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please enter your last name'
+                    }
+                    ]
+                },
+                occupation: {
+                    identifier: 'occupation',
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please select an occupation'
+                    }
+                    ]
+                },
+                username: {
+                    identifier: 'username',
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please enter a username'
+                    }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    errorLimit: 1,
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : 'Please enter a password'
+                    },
+                    {
+                        type   : 'minLength[8]',
+                        prompt : 'Your password must be at least {ruleValue} characters'
+                    }
+                    ]
+                },
+                }
+            })
+            ;
+        
     </script>
 </html>
