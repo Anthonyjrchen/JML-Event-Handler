@@ -68,8 +68,7 @@ async def create_user(request: UserRequest, db : Session = Depends(get_db)):
         db.add(user)
         db.commit()
         return {"True"}
-    except Exception as err:
-        print(err)
+    except:
         return {"False"}
 
 @app.get("/signup")
