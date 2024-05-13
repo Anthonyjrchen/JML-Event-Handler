@@ -109,7 +109,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="ntmf1_due">
                                     N/A
                                 </h4>
                             </td>
@@ -171,7 +171,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="er_due">
                                     N/A
                                 </h4>
                             </td>
@@ -233,7 +233,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="efd_due">
                                     N/A
                                 </h4>
                             </td>
@@ -305,10 +305,10 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="tbf41_due1">
                                     Plaintiff Due — N/A
                                 </h4>
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="tbf41_due2">
                                     OP Due — N/A
                                 </h4>
                             </td>
@@ -370,7 +370,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="ntaf23_due">
                                     N/A
                                 </h4>
                             </td>
@@ -432,7 +432,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="rr_due">
                                     N/A
                                 </h4>
                             </td>
@@ -494,7 +494,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="tmc_due">
                                     N/A
                                 </h4>
                             </td>
@@ -586,7 +586,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="noo_due">
                                     N/A
                                 </h4>
                             </td>
@@ -648,7 +648,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="tr_due">
                                     N/A
                                 </h4>
                             </td>
@@ -700,7 +700,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="tcf42_due">
                                     N/A
                                 </h4>
                             </td>
@@ -752,7 +752,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="noe_due">
                                     N/A
                                 </h4>
                             </td>
@@ -804,7 +804,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="iopetc_due">
                                     N/A
                                 </h4>
                             </td>
@@ -856,7 +856,7 @@
                                 </h2>
                             </td>
                             <td class="collapsing">
-                                <h4 class="ui header">
+                                <h4 class="ui header" id="ntpf43_due">
                                     N/A
                                 </h4>
                             </td>
@@ -990,6 +990,7 @@
         type: 'date',
         onChange: function(date, text) {
             document.getElementById('calendar_input').innerText = "Calculator Information: Inputted date = " + text;
+            calcDates(text);
         }
     })
     $('.ui.dropdown').dropdown();
@@ -1013,5 +1014,30 @@
       })
 
       $('.ui.segment .checkbox').checkbox('attach events', '.toggle.button');
+
+      function calcDates(inputted_date) {
+        $.ajax({
+            url:"/calculate_dates",
+            type:"POST",
+            headers:{"year":inputted_date.split(" ")[2], "month":inputted_date.split(" ")[0],"day":inputted_date.split(" ")[1].slice(0,-1)},
+            async:false,
+            success: function(dates) {
+                document.getElementById('ntmf1_due').innerText = dates["date1"]
+                document.getElementById('er_due').innerText = dates["date2"]
+                document.getElementById('efd_due').innerText = dates["date3"]
+                document.getElementById('tbf41_due1').innerText = dates["date4"]
+                document.getElementById('tbf41_due2').innerText = dates["date5"]
+                document.getElementById('ntaf23_due').innerText = dates["date6"]
+                document.getElementById('rr_due').innerText = dates["date7"]
+                document.getElementById('tmc_due').innerText = dates["date8"]
+                document.getElementById('noo_due').innerText = dates["date9"]
+                document.getElementById('tr_due').innerText = dates["date10"]
+                document.getElementById('tcf42_due').innerText = dates["date11"]
+                document.getElementById('noe_due').innerText = dates["date12"]
+                document.getElementById('iopetc_due').innerText = dates["date13"]
+                document.getElementById('ntpf43_due').innerText = dates["date14"]
+            }
+        })
+      }
 </script>
 {% endblock %}

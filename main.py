@@ -11,10 +11,11 @@ from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
 import models
 from models import User
-from datetime import timedelta
+import datetime
 import cryptography
 import pandas as pd
 import win32com.client as client
+import calculator
 
 
 '''
@@ -25,7 +26,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 outlook = client.Dispatch("Outlook.Application")
 namespace = outlook.GetNamespace("MAPI")
-
 
 '''
 DATABASE SETUP AND CONNECTION
@@ -103,7 +103,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Incorrect username or password",
                             headers={"WWW-Authenticate": "Bearer"})
-    access_token_expires = timedelta(minutes=cryptography.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = datetime.timedelta(minutes=cryptography.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = Authorize.create_access_token(subject=user.username, algorithm=cryptography.ALGORITHM ,expires_time=access_token_expires)
     refresh_token = Authorize.create_refresh_token(subject=user.username, algorithm=cryptography.ALGORITHM ,expires_time=access_token_expires)
     Authorize.set_access_cookies(access_token)
@@ -178,3 +178,11 @@ def support(request: Request, Authorize: AuthJWT = Depends()):
         "request": request,
         "page_location":"support"
     })
+
+'''
+CALCULATOR ROUTES
+'''
+@app.post("/calculate_dates")
+def calc_dates(request: Request, Authorize: AuthJWT = Depends()):
+    Authorize.jwt_required()
+    return calculator.calculate_dates(request.headers["year"],request.headers["month"],request.headers["day"])
