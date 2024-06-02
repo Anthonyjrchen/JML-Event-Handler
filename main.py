@@ -184,4 +184,10 @@ CALCULATOR ROUTES
 @app.post("/calculate_dates")
 def calc_dates(request: Request, Authorize: AuthJWT = Depends()):
     Authorize.jwt_required()
-    return calculator.calculate_dates(request.headers["year"],request.headers["month"],request.headers["day"])
+    raw_dates = calculator.calculate_dates(request.headers["year"],request.headers["month"],request.headers["day"])
+    string_dates = {}
+    for key,date in raw_dates.items():
+        month = calculator.months2[str(date.month)]
+        string_dates[key] = str(date.day) + "-" + month + "-" + str(date.year)
+    print(string_dates)
+    return string_dates
