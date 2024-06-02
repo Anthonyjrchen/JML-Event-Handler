@@ -99,7 +99,7 @@
                     <table class="ui celled first second last stuck scrolling table">
                         <thead>
                             <tr class="calculatorheader">
-                                <th class="seven wide">Form name</th>
+                                <th class="seven wide">Form Name</th>
                                 <th>Due Date</th>
                                 <th>Reminder Dates</th>
                             </tr>
@@ -899,13 +899,64 @@
                     </table>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="remove_event">
-                    <div class="ui header">
-                        REMOVE EVENT HERE
+                    <div class="ui form">
+                        <div class="field">
+                            <label>Court File No.</label>
+                            <input type="text" placeholder="X-XXXXXX">
+                        </div>
+                    </div>
+                    <!-- <div class="ui list">
+                        <h5>Events to be deleted:</h5>
+                        <div class="item">Apples</div>
+                        <div class="item">Pears</div>
+                        <div class="item">Oranges</div>
+                    </div> -->
+                    <button id="delete" class="ui inverted red button" style="margin-top: 10px;">Delete</button>
+                    <div class="ui first mini modal">
+                        <div class="header">Delete a Trial</div>
+                        <div class="content">Are you sure you want to delete this trial?</div>
+                        <div class="actions">
+                          <button class="ui black deny button" style="background-color: #4d494a;">
+                            No
+                          </button>
+                          <button class="ui positive right labeled icon button" style="background-color: #e96989;">
+                            Yes
+                            <i class="checkmark icon"></i>
+                          </button>
+                        </div>
                     </div>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="reschedule_event">
-                    <div class="ui header">
-                        RESCHEDULE EVENT HERE
+                    <div class="ui form">
+                        <div class="field">
+                            <label>Court File No.</label>
+                            <input type="text" placeholder="X-XXXXXX">
+                        </div>
+                    </div>
+                    <div class="ui form">
+                        <div class="field" style="margin-top: 10px;">
+                            <label>Reschedule to:</label>
+                            <div class="ui calendar">
+                                <div class="ui input left icon">
+                                  <i class="calendar icon"></i>
+                                  <input type="text" placeholder="Trial Date" name="event_info[trial_date]_resched">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="reschedule" class="ui inverted red button" style="margin-top: 10px;">Reschedule</button>
+                    <div class="ui second mini modal">
+                        <div class="header">Reschedule a Trial</div>
+                        <div class="content">Are you sure you want to reschedule this trial?</div>
+                        <div class="actions">
+                          <button class="ui black deny button" style="background-color: #572e37; color: #fff;">
+                            No
+                          </button>
+                          <button class="ui positive right labeled icon button" style="background-color: #e96989;">
+                            Yes
+                            <i class="checkmark icon"></i>
+                          </button>
+                        </div>
                     </div>
                 </div>
             </div>
